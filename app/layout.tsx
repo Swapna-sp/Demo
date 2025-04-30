@@ -12,11 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           defer
         />
       </head>
-      <body>{children}
-
-
-        
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

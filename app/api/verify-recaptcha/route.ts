@@ -1,5 +1,3 @@
-
-
 import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
@@ -8,12 +6,23 @@ export async function POST(request: Request) {
     const token = body.token;
 
     if (!token) {
-      return NextResponse.json({ success: false, message: 'Missing token' }, { status: 400 });
+      return NextResponse.json(
+        { success: false, message: 'Missing token' },
+        { status: 400 }
+      );
     }
 
     const secretKey = process.env.CAPTCHA_SECRET_KEY;
-    
-    const response = await fetch(`https://www.google.com/recaptcha/api/siteverify`, {
+
+    // Ensure secret key is provided
+    if (!secretKey) {
+      return NextResponse.json(
+        { success: false, message: 'Missing secret key' },
+        { status: 500 }
+      );
+    }
+
+    const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -25,12 +34,18 @@ export async function POST(request: Request) {
     console.log('reCAPTCHA verification result:', data);
 
     if (!data.success || data.score < 0.5) {
-      return NextResponse.json({ success: false, message: 'reCAPTCHA verification failed' }, { status: 400 });
+      return NextResponse.json(
+        { success: false, message: 'reCAPTCHA verification failed' },
+        { status: 400 }
+      );
     }
 
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Error verifying reCAPTCHA:', error);
-    return NextResponse.json({ success: false, message: 'Server error' }, { status: 500 });
+    return NextResponse.json(
+      { success: false, message: 'Server error' },
+      { status: 500 }
+    );
   }
 }
