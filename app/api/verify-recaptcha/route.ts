@@ -13,8 +13,6 @@ export async function POST(request: Request) {
     }
 
     const secretKey = process.env.CAPTCHA_SECRET_KEY;
-
-    // Ensure secret key is provided
     if (!secretKey) {
       return NextResponse.json(
         { success: false, message: 'Missing secret key' },
