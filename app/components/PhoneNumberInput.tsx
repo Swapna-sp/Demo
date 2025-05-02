@@ -33,20 +33,32 @@ export default function PhoneNumberInput({ onOTPRequest }: PhoneNumberInputProps
   };
   
   return (
-    <div className="p-6 max-w-md mx-auto items-center bg-white p-8 rounded-lg shadow-lg max-w-sm w-full">
-      <h1 className="text-2xl font-semibold mb-4">Login with Phone</h1>
+    <div className="max-w-sm w-full mx-auto bg-white p-6 rounded-xl shadow-md text-center">
+      <p className="text-gray-500 text-md mb-8">
+        Sign in or sign up now to unlock personalised deals and sync across all your devices
+      </p>
+
       <PhoneInput
         defaultCountry="us"
         value={phone}
         onChange={setPhone}
-        className="mb-4"
+        className="mb-8 w-full"
+        inputClassName="w-full border rounded-md px-4 py-2"
       />
+
+      <p className="text-md text-gray-500 mb-8">
+        By continuing, you are indicating that you accept our{' '}
+        <span className="text-blue-600 cursor-pointer">Terms of Service</span> and{' '}
+        <span className="text-blue-600 cursor-pointer">Privacy Policy</span>.
+      </p>
+
       <button
         onClick={sendOTP}
-        className="bg-blue-600 text-white px-4 py-2 rounded w-full mb-4"
+        className="bg-gradient-to-r from-blue-600 to-blue-800 text-white font-semibold py-3 rounded w-full"
       >
-        Send OTP
+        SEND OTP
       </button>
+
       <div id="recaptcha-container"></div>
     </div>
   );

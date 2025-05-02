@@ -2,3 +2,15 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+.react-international-phone-input-container .react-international-phone-country-selector-button {
+    padding: 20px;
+}
+.react-international-phone-input-container .react-international-phone-input{
+    padding: 20px !important;
+}
+body{
+
+
+
+    
+}
