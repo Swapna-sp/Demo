@@ -7,26 +7,31 @@ import 'react-international-phone/style.css';
 import { auth } from '@/firebase/config';
 
 interface PhoneNumberInputProps {
-  onOTPRequest: (confirmationResult: any) => void;
+  onOTPRequest: (confirmationResult: any, phone: string) => void;
 }
 
 export default function PhoneNumberInput({ onOTPRequest }: PhoneNumberInputProps) {
   const [phone, setPhone] = useState('');
 
   const sendOTP = async () => {
+    if (!phone || phone.trim() === '') {
+      alert('Please enter the phone number');
+      return;
+    }
+  
     try {
       const verifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
         size: 'invisible'
       });
-
+  
       const result = await signInWithPhoneNumber(auth, phone, verifier);
-      onOTPRequest(result);
+      onOTPRequest(result, phone);
       alert('OTP sent successfully!');
     } catch (error: any) {
       alert(error.message || 'Failed to send OTP');
     }
   };
-
+  
   return (
     <div className="p-6 max-w-md mx-auto items-center bg-white p-8 rounded-lg shadow-lg max-w-sm w-full">
       <h1 className="text-2xl font-semibold mb-4">Login with Phone</h1>

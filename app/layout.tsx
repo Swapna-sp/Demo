@@ -1,4 +1,5 @@
 import './globals.css'
+import { Toaster } from 'react-hot-toast';
 
 
 export const metadata = {
