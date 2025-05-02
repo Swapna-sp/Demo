@@ -15,11 +15,10 @@ export default function OTPVerification({
   phone,
   onOTPRequest,
 }: OTPVerificationProps) {
-  const [otp, setOtp] = useState(['', '', '', '']);
+  const [otp, setOtp] = useState(Array(6).fill(''));
   const [timer, setTimer] = useState(60);
   const [isResendDisabled, setIsResendDisabled] = useState(true);
 
-  // Countdown timer
   useEffect(() => {
     if (timer > 0) {
       const interval = setInterval(() => setTimer((prev) => prev - 1), 1000);
@@ -29,25 +28,23 @@ export default function OTPVerification({
     }
   }, [timer]);
 
-  // Handle OTP input field changes
   const handleChange = (index: number, value: string) => {
     if (/^\d?$/.test(value)) {
       const updatedOtp = [...otp];
       updatedOtp[index] = value;
       setOtp(updatedOtp);
 
-      // Focus next input
-      if (value && index < 3) {
+      if (value && index < 5) {
         const nextInput = document.getElementById(`otp-${index + 1}`);
-        if (nextInput) nextInput.focus();
+        nextInput?.focus();
       }
     }
   };
 
   const verifyOTP = async () => {
     const code = otp.join('');
-    if (code.length !== 4) {
-      alert('Please enter the 4-digit OTP.');
+    if (code.length !== 6 || otp.includes('')) {
+      alert('Please enter the complete OTP.');
       return;
     }
     try {
@@ -79,7 +76,7 @@ export default function OTPVerification({
     <div className="bg-white rounded-2xl shadow-lg p-6 max-w-sm w-full mx-auto font-sans text-center">
       <h2 className="text-lg font-semibold mb-2">Enter your OTP code to verify</h2>
       <p className="text-sm text-gray-600 mb-4">
-        A 4 digit verification code has been sent to <strong>******{phone.slice(-4)}</strong>
+        A verification code has been sent to <strong>******{phone.slice(-4)}</strong>
       </p>
 
       <div className="flex justify-center gap-2 mb-4">
@@ -91,22 +88,18 @@ export default function OTPVerification({
             maxLength={1}
             value={digit}
             onChange={(e) => handleChange(idx, e.target.value)}
-            className="w-12 h-12 text-xl text-center border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-10 h-12 text-xl text-center border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         ))}
       </div>
 
-      <p className="text-sm text-gray-500 mb-2">
-        Didn't receive any code?
-      </p>
+      <p className="text-sm text-gray-500 mb-2">Didn't receive any code?</p>
 
       <button
         onClick={resendOTP}
         disabled={isResendDisabled}
         className={`font-semibold mb-4 ${
-          isResendDisabled
-            ? 'text-gray-400 cursor-not-allowed'
-            : 'text-green-600 underline'
+          isResendDisabled ? 'text-gray-400 cursor-not-allowed' : 'text-green-600 underline'
         }`}
       >
         RESEND OTP {isResendDisabled && `in 00:${timer < 10 ? `0${timer}` : timer}`}

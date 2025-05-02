@@ -1,6 +1,9 @@
 import './globals.css'
 import { Toaster } from 'react-hot-toast';
-
+import Header from './components/Header';
+import Footer from './components/Footer';
+import InternationalDestinations from './components/InternationalDestinations';
+import FeaturesSection from './components/FeaturesSection';
 
 
 export const metadata = {
@@ -17,7 +20,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           defer
         />
       </head>
-      <body >{children}</body>
+      <body>
+      <Header />
+      <main className="flex-grow">{children}
+        <InternationalDestinations />
+        <FeaturesSection />
+        </main>
+
+        <Footer />
+      </body>
     </html>
   );
 }

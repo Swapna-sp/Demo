@@ -15,7 +15,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="mt-50">
+    <div className="mt-20 mb-20">
       {confirmationResult ? (
         <OTPVerification
           confirmationResult={confirmationResult}
