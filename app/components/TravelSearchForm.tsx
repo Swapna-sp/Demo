@@ -1,9 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import {
-  Search, Calendar, User, Phone, Mail, Plane, Hotel, UserCircle, Gift,
-} from 'lucide-react';
+import { Search, Calendar, User, Phone, Mail, Plane, Hotel, UserCircle, Gift } from 'lucide-react';
 
 const tabs = [
   { id: 'holiday', label: 'Holiday Package', icon: <Gift className="w-4 h-4" /> },
@@ -12,10 +10,7 @@ const tabs = [
   { id: 'account', label: 'My Account', icon: <UserCircle className="w-4 h-4" /> },
 ];
 
-const quickSearchTags = [
-  'Malaysia', 'Maldives', 'Nepal', 'Dubai', 'Thailand',
-  'Mauritius', 'Himachal Pradesh', 'Punjab', 'North East',
-];
+const quickSearchTags = ['Malaysia', 'Maldives', 'Nepal', 'Dubai', 'Thailand', 'Mauritius', 'Himachal Pradesh', 'Punjab', 'North East'];
 
 const TravelSearchSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState('holiday');
@@ -25,7 +20,7 @@ const TravelSearchSection: React.FC = () => {
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [travelDate, setTravelDate] = useState(() => {
-    const today = new Date().toISOString().split('T')[0]; 
+    const today = new Date().toISOString().split('T')[0];
     return today;
   });
 
@@ -39,36 +34,33 @@ const TravelSearchSection: React.FC = () => {
       phone,
       email,
     };
-  
+
     try {
-      const response = await fetch(
-        "https://us-central1-fir-hosting-2a037.cloudfunctions.net/submitSearch", 
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        }
-      );
-  
+      const response = await fetch(process.env.NEXT_PUBLIC_LEAD_API_URL!, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': process.env.NEXT_PUBLIC_API_KEY!, 
+        },
+        body: JSON.stringify(payload),
+      });
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-  
+
       const data = await response.json();
-      console.log("Success:", data);
-      alert("Data submitted successfully!");
+      console.log('Success:', data);
+      alert('Data submitted successfully!');
     } catch (error: any) {
-      console.error("Error submitting data:", error.message || error);
-      alert("Submission failed.");
+      console.error('Error submitting data:', error.message || error);
+      alert('Submission failed.');
     }
   };
-  
 
   return (
     <div className="bg-[#1C1A2E] text-white min-h-[320px] py-10">
-   
+  
       <div className="flex justify-center gap-4 mb-6 flex-wrap">
         {tabs.map((tab) => (
           <button
@@ -84,10 +76,9 @@ const TravelSearchSection: React.FC = () => {
         ))}
       </div>
 
-      
       <div className="bg-white text-black mx-auto rounded-xl p-6 w-[95%] max-w-[1600px]">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-         
+          
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Find</label>
             <div className="border rounded-md px-3 py-2 flex items-center space-x-2">
@@ -103,7 +94,7 @@ const TravelSearchSection: React.FC = () => {
             <p className="text-xs text-gray-500 mt-1">From Packages</p>
           </div>
 
-        
+         
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">When</label>
             <div className="border rounded-md px-3 py-2 flex items-center space-x-2">
@@ -117,7 +108,7 @@ const TravelSearchSection: React.FC = () => {
             </div>
           </div>
 
-         
+      
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Number of Pax</label>
             <div className="border rounded-md px-3 py-2 flex items-start space-x-2">
@@ -137,7 +128,6 @@ const TravelSearchSection: React.FC = () => {
             </div>
           </div>
 
-        
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
             <div className="border rounded-md px-3 py-2 flex items-center space-x-2">
@@ -152,7 +142,7 @@ const TravelSearchSection: React.FC = () => {
             </div>
           </div>
 
-    
+         
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
             <div className="border rounded-md px-3 py-2 flex items-center space-x-2">
@@ -177,7 +167,6 @@ const TravelSearchSection: React.FC = () => {
           </button>
         </div>
 
- 
         <div className="flex flex-wrap gap-2">
           {quickSearchTags.map((tag) => (
             <button

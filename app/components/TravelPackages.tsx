@@ -1,5 +1,7 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
+
 interface Package {
   id: string;
   title: string;
@@ -10,34 +12,50 @@ interface Package {
 }
 
 const TravelPackages = ({ apiUrl }: { apiUrl: string }) => {
-  const [packages, setPackages] = useState<Package[]>([]); 
+  const [packages, setPackages] = useState<Package[]>([]);
   const [loading, setLoading] = useState(true);
 
   const fetchPackages = async () => {
     try {
-      const response = await fetch(apiUrl);
+      const response = await fetch(apiUrl, {
+        headers: {
+          "x-api-key": process.env.NEXT_PUBLIC_PACKAGE_API_KEY || "",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch: ${response.status}`);
+      }
+
       const data = await response.json();
-      setPackages(data); 
+      setPackages(data);
     } catch (err) {
       console.error("Failed to fetch packages:", err);
       setPackages([]);
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchPackages(); 
+    fetchPackages();
   }, [apiUrl]);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 px-6 mt-6 mb-20">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 px-6 mt-20 mb-20">
       {loading ? (
         <div className="col-span-full text-center text-gray-500">Loading...</div>
       ) : packages.length > 0 ? (
         packages.map((pkg) => (
-          <div key={pkg.id} className="bg-white rounded-lg shadow-md overflow-hidden relative">
-            <img src={pkg.imageUrl} alt={pkg.title} className="w-full h-40 object-cover" />
+          <div
+            key={pkg.id}
+            className="bg-white rounded-lg shadow-md overflow-hidden relative"
+          >
+            <img
+              src={pkg.imageUrl}
+              alt={pkg.title}
+              className="w-full h-40 object-cover"
+            />
             <div className="p-4">
               <h3 className="text-lg font-semibold">{pkg.title}</h3>
               <p className="text-sm text-gray-600 mt-1">{pkg.description}</p>
@@ -49,7 +67,9 @@ const TravelPackages = ({ apiUrl }: { apiUrl: string }) => {
           </div>
         ))
       ) : (
-        <div className="col-span-full text-center text-gray-500">No packages available</div>
+        <div className="col-span-full text-center text-gray-500">
+          No packages available
+        </div>
       )}
     </div>
   );
