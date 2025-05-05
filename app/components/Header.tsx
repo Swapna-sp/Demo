@@ -20,12 +20,7 @@ const Header: React.FC = () => {
             
             <Link href="/package" className="hover:text-gray-300">Packages</Link>
           </nav>
-          {/* <nav className="hidden md:flex gap-5 text-sm font-medium">
-           
-            <Link href="/login" className="text-white hover:underline">
-            Login
-          </Link>
-          </nav> */}
+          
         </div>
 
      
@@ -33,9 +28,14 @@ const Header: React.FC = () => {
           <button className="flex items-center gap-1 bg-blue-700 px-3 py-1 rounded text-sm">
             🇮🇳 INR
           </button>
-          <button className="bg-white text-blue-900 px-4 py-1.5 rounded-full text-sm font-semibold hover:bg-gray-100 transition">
-            Login
-          </button>
+          <Link href="/login">
+               <button className="bg-white text-blue-900 px-4 py-1.5 rounded-full text-sm font-semibold hover:bg-gray-100 transition">
+                Login
+              </button>
+          </Link>
+
+
+
         </div>
       </div>
     </header>
