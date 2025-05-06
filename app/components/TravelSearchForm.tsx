@@ -177,7 +177,7 @@ const tabs = [
   { id: 'account', label: 'My Account', icon: <UserCircle className="w-4 h-4" /> },
 ];
 
-const quickSearchTags = ['Malaysia', 'Maldives', 'Nepal', 'Dubai', 'Thailand', 'Mauritius', 'Himachal Pradesh', 'Punjab', 'North East'];
+// const quickSearchTags = ['Malaysia', 'Maldives', 'Nepal', 'Dubai', 'Thailand', 'Mauritius', 'Himachal Pradesh', 'Punjab', 'North East'];
 
 const TravelSearchSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState('holiday');
@@ -311,7 +311,7 @@ const TravelSearchSection: React.FC = () => {
           </button>
         </div>
 
-        <div className="flex flex-wrap gap-2">
+        {/* <div className="flex flex-wrap gap-2">
           {quickSearchTags.map((tag) => (
             <button
               key={tag}
@@ -320,7 +320,7 @@ const TravelSearchSection: React.FC = () => {
               {tag}
             </button>
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );
