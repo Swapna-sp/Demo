@@ -128,7 +128,7 @@ import { useEffect, useState } from 'react';
 import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 import { auth } from '@/firebase/config';
 import toast from 'react-hot-toast';
-import { useRouter } from 'next/router';  
+import { useRouter } from 'next/navigation';  
 
 interface OTPVerificationProps {
   confirmationResult: any;
