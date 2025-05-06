@@ -120,12 +120,15 @@
 
 
 
+
+
 'use client';
 
 import { useEffect, useState } from 'react';
 import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 import { auth } from '@/firebase/config';
 import toast from 'react-hot-toast';
+import { useRouter } from 'next/router';  
 
 interface OTPVerificationProps {
   confirmationResult: any;
@@ -141,6 +144,7 @@ export default function OTPVerification({
   const [otp, setOtp] = useState(Array(6).fill(''));
   const [timer, setTimer] = useState(60);
   const [isResendDisabled, setIsResendDisabled] = useState(true);
+  const router = useRouter();  
 
   useEffect(() => {
     if (timer > 0) {
@@ -167,14 +171,38 @@ export default function OTPVerification({
   const verifyOTP = async () => {
     const code = otp.join('');
     if (code.length !== 6 || otp.includes('')) {
-      toast.error('Please enter the complete OTP.');
+      toast.error(
+        <div id="toast-simple" className="flex items-center w-full max-w-xs p-4 space-x-4 rtl:space-x-reverse text-gray-500 bg-white divide-x rtl:divide-x-reverse divide-gray-200 rounded-lg shadow-sm dark:text-gray-400 dark:divide-gray-700 dark:bg-gray-800" role="alert">
+          <svg className="w-5 h-5 text-red-600 dark:text-red-500 rotate-45" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 17 8 2L9 1 1 19l8-2Zm0 0V9"/>
+          </svg>
+          <div className="ps-4 text-sm font-normal">Please enter the complete OTP.</div>
+        </div>
+      );
       return;
     }
     try {
       await confirmationResult.confirm(code);
-      toast.success('Phone number verified!');
+      toast.success(
+        <div id="toast-simple" className="flex items-center w-full max-w-xs p-4 space-x-4 rtl:space-x-reverse text-gray-500 bg-white divide-x rtl:divide-x-reverse divide-gray-200 rounded-lg shadow-sm dark:text-gray-400 dark:divide-gray-700 dark:bg-gray-800" role="alert">
+          <svg className="w-5 h-5 text-blue-600 dark:text-blue-500 rotate-45" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 17 8 2L9 1 1 19l8-2Zm0 0V9"/>
+          </svg>
+          <div className="ps-4 text-sm font-normal">Phone number verified successfully!</div>
+        </div>
+      );
+
+     
+      router.push('/packages');  
     } catch (error: any) {
-      toast.error(error.message || 'Invalid OTP');
+      toast.error(
+        <div id="toast-simple" className="flex items-center w-full max-w-xs p-4 space-x-4 rtl:space-x-reverse text-gray-500 bg-white divide-x rtl:divide-x-reverse divide-gray-200 rounded-lg shadow-sm dark:text-gray-400 dark:divide-gray-700 dark:bg-gray-800" role="alert">
+          <svg className="w-5 h-5 text-red-600 dark:text-red-500 rotate-45" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 17 8 2L9 1 1 19l8-2Zm0 0V9"/>
+          </svg>
+          <div className="ps-4 text-sm font-normal">{error.message || 'Invalid OTP'}</div>
+        </div>
+      );
     }
   };
 
@@ -182,7 +210,7 @@ export default function OTPVerification({
     try {
       setIsResendDisabled(true);
       setTimer(60);
-      setOtp(Array(6).fill('')); // Clear old OTP input
+      setOtp(Array(6).fill('')); 
 
       const verifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
         size: 'invisible',
@@ -190,9 +218,23 @@ export default function OTPVerification({
 
       const result = await signInWithPhoneNumber(auth, phone, verifier);
       onOTPRequest(result, phone);
-      toast.success('OTP resent successfully!');
+      toast.success(
+        <div id="toast-simple" className="flex items-center w-full max-w-xs p-4 space-x-4 rtl:space-x-reverse text-gray-500 bg-white divide-x rtl:divide-x-reverse divide-gray-200 rounded-lg shadow-sm dark:text-gray-400 dark:divide-gray-700 dark:bg-gray-800" role="alert">
+          <svg className="w-5 h-5 text-blue-600 dark:text-blue-500 rotate-45" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 17 8 2L9 1 1 19l8-2Zm0 0V9"/>
+          </svg>
+          <div className="ps-4 text-sm font-normal">OTP resent successfully!</div>
+        </div>
+      );
     } catch (error: any) {
-      toast.error(error.message || 'Failed to resend OTP');
+      toast.error(
+        <div id="toast-simple" className="flex items-center w-full max-w-xs p-4 space-x-4 rtl:space-x-reverse text-gray-500 bg-white divide-x rtl:divide-x-reverse divide-gray-200 rounded-lg shadow-sm dark:text-gray-400 dark:divide-gray-700 dark:bg-gray-800" role="alert">
+          <svg className="w-5 h-5 text-red-600 dark:text-red-500 rotate-45" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 17 8 2L9 1 1 19l8-2Zm0 0V9"/>
+          </svg>
+          <div className="ps-4 text-sm font-normal">{error.message || 'Failed to resend OTP'}</div>
+        </div>
+      );
     }
   };
 
