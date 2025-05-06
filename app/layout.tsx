@@ -21,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
+      <Toaster position="top-center" reverseOrder={false} />
       <Header />
       <main className="flex-grow">{children}
         <InternationalDestinations />
