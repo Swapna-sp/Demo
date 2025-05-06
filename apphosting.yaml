@@ -10,4 +10,7 @@ env:
     value: "fir-hosting-2a037.firebaseapp.com"
   - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
     value: "1:466788283734:web:de3fe1b549768ada5552f7"
-
+  - variable: NEXT_PUBLIC_PACKAGE_API_URL
+    value: "https://gettravelpackages-5oz2r3w4ya-uc.a.run.app"
+  - variable: NEXT_PUBLIC_PACKAGE_API_KEY
+    value: "dmcwebsite2025farefirst"
