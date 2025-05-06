@@ -27,6 +27,7 @@ exports.submitLead = functions.https.onRequest((req, res) => {
         search,
         travelDate,
         pax,
+        children,
         rooms,
         phone,
         email,

@@ -198,7 +198,7 @@ const TravelSearchSection: React.FC = () => {
       search,
       travelDate,
       pax,
-      children, // Include children data
+      children, 
       rooms,
       phone,
       email,
