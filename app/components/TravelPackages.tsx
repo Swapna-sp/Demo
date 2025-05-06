@@ -81,7 +81,6 @@
 
 
 
-
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -105,7 +104,6 @@ const TravelPackages = ({ apiUrl }: { apiUrl: string }) => {
   const router = useRouter();
 
   useEffect(() => {
-    
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
@@ -148,7 +146,7 @@ const TravelPackages = ({ apiUrl }: { apiUrl: string }) => {
         if (!user) {
           router.push("/login");
         }
-      }, 3000); 
+      }, 3000);
     };
 
     window.addEventListener("scroll", handleInteraction);
@@ -186,8 +184,9 @@ const TravelPackages = ({ apiUrl }: { apiUrl: string }) => {
                   {user ? (
                     `$${pkg.price}`
                   ) : (
-                    <span className="select-none" style={{ filter: 'blur(2px)', opacity: 0.7 }}>${pkg.price}</span>
-
+                    <span className="select-none" style={{ filter: 'blur(2px)', opacity: 0.7 }}>
+                      ${pkg.price}
+                    </span>
                   )}
                 </span>
               </div>
@@ -204,3 +203,4 @@ const TravelPackages = ({ apiUrl }: { apiUrl: string }) => {
 };
 
 export default TravelPackages;
+
