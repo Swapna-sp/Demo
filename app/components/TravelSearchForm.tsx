@@ -158,17 +158,10 @@
 // export default TravelSearchSection;
 
 
-
-
-
-
-
-
-
 'use client';
 
 import React, { useState } from 'react';
-import { Search, Calendar, User, Plane, Hotel, UserCircle, Gift } from 'lucide-react';
+import { Search, Calendar, User, Plane, Hotel, UserCircle, Gift, MailIcon } from 'lucide-react';
 
 const tabs = [
   { id: 'holiday', label: 'Holiday Package', icon: <Gift className="w-4 h-4" /> },
@@ -176,16 +169,12 @@ const tabs = [
   { id: 'hotels', label: 'Hotels', icon: <Hotel className="w-4 h-4" /> },
   { id: 'account', label: 'My Account', icon: <UserCircle className="w-4 h-4" /> },
 ];
-
-// const quickSearchTags = ['Malaysia', 'Maldives', 'Nepal', 'Dubai', 'Thailand', 'Mauritius', 'Himachal Pradesh', 'Punjab', 'North East'];
-
 const TravelSearchSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState('holiday');
   const [search, setSearch] = useState('');
   const [pax, setPax] = useState('1 Adult');
-  const [children, setChildren] = useState('0 Children'); // Add children state
+  const [children, setChildren] = useState('0 Children'); 
   const [rooms, setRooms] = useState('1 Room');
-  const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [travelDate, setTravelDate] = useState(() => {
     const today = new Date().toISOString().split('T')[0];
@@ -200,7 +189,6 @@ const TravelSearchSection: React.FC = () => {
       pax,
       children, 
       rooms,
-      phone,
       email,
     };
 
@@ -289,16 +277,35 @@ const TravelSearchSection: React.FC = () => {
                   value={rooms}
                   onChange={(e) => setRooms(e.target.value)}
                 />
-                {/* Children Input */}
+                
                 <input
                   className="text-xs text-gray-500 outline-none"
                   value={children}
                   onChange={(e) => setChildren(e.target.value)}
                   placeholder="Number of Children"
                 />
+                
               </div>
             </div>
           </div>
+ 
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <div className="border rounded-md px-3 py-2 flex items-center space-x-2">
+              <MailIcon className="w-4 h-4 text-gray-400" />
+              <input
+                type="email"
+                className="outline-none text-sm flex-1 bg-transparent"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your Mail Id"
+              />
+            </div>
+          </div>
+
+
+
 
         </div>
 
@@ -311,16 +318,7 @@ const TravelSearchSection: React.FC = () => {
           </button>
         </div>
 
-        {/* <div className="flex flex-wrap gap-2">
-          {quickSearchTags.map((tag) => (
-            <button
-              key={tag}
-              className="border px-4 py-2 rounded-full text-sm hover:bg-gray-100 transition"
-            >
-              {tag}
-            </button>
-          ))}
-        </div> */}
+        
       </div>
     </div>
   );
