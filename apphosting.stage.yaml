@@ -51,7 +51,7 @@ env:
     value: "Ld6bCkrAAAAAEi-TThYJz_LTiF8SP90IV9lYWEH"
    
   - variable: NEXT_PUBLIC_VALID_API_KEY
-    secret: PUBLIC_VALID_API_KEY
+    value: "abc123secretkey789" 
 
   - variable: NEXT_PUBLIC_LEAD_API_URL
-    secret: PUBLIC_LEAD_API_URL
+    value: "https://us-central1-fir-hosting-2a037.cloudfunctions.net/submitLead"
