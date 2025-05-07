@@ -4,7 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import InternationalDestinations from './components/InternationalDestinations';
 import FeaturesSection from './components/FeaturesSection';
-
+import Domestic from './components/Domestic';
 
 export const metadata = {
   title: 'Phone Login',
@@ -24,7 +24,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <Toaster position="top-center" reverseOrder={false} />
       <Header />
       <main className="flex-grow">{children}
+      <Domestic />
         <InternationalDestinations />
+        <Domestic />
+        <FeaturesSection />
         <FeaturesSection />
         </main>
 

@@ -20,7 +20,8 @@ exports.submitLead = functions.https.onRequest((req, res) => {
     }
 
     try {
-      const { type, search, travelDate, pax, rooms, email } = req.body;
+      const { type, search, travelDate, pax, rooms, email, children } = req.body;
+
 
       await db.collection("travelSearches").add({
         type,
