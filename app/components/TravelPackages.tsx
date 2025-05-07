@@ -14,14 +14,12 @@ interface Package {
   price: number;
 }
 
+let hasFetchedGlobal = false;
 const TravelPackages = ({ apiUrl }: { apiUrl: string }) => {
   const [packages, setPackages] = useState<Package[]>([]);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
-
-  
-  const hasFetched = useRef(false);
 
   
   useEffect(() => {
@@ -33,8 +31,8 @@ const TravelPackages = ({ apiUrl }: { apiUrl: string }) => {
 
   
   useEffect(() => {
-    if (hasFetched.current) return;
-    hasFetched.current = true;
+    if (hasFetchedGlobal) return;
+    hasFetchedGlobal = true;
 
     const fetchPackages = async () => {
       try {

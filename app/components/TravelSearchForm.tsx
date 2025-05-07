@@ -193,7 +193,7 @@ const TravelSearchSection: React.FC = () => {
     };
 
     try {
-      const response = await fetch(process.env.NEXT_PUBLIC_LEAD_API_URL!, {
+      const response = await fetch('https://us-central1-fir-hosting-2a037.cloudfunctions.net/submitLead', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
