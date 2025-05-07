@@ -43,4 +43,4 @@ env:
     value: "dmcwebsite2025farefirst"
 
   - variable: NEXT_PUBLIC_RECAPTCHA_SITE_KEY
-    value: "Ld6bCkrAAAAAEi-TThYJz_LTiF8SP90IV9lYWEH"
+    secret: PUBLIC_RECAPTCHA_SITE_KEY
