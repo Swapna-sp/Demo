@@ -38,9 +38,6 @@ env:
   - variable: NEXT_PUBLIC_FIREBASE_APP_ID
     secret: PUBLIC_FIREBASE_APP_ID
 
-  # - variable: NEXT_PUBLIC_PACKAGE_API_URL
-  #   value: "https://gettravelpackages-5oz2r3w4ya-uc.a.run.app"
-
   - variable: NEXT_PUBLIC_PACKAGE_API_KEY
     secret: PUBLIC_PACKAGE_API_KEY
 
@@ -56,7 +53,7 @@ env:
   - variable: NEXT_PUBLIC_LEAD_API_URL
     secret: PUBLIC_LEAD_API_URL
 
-  # - variable: CAPTCHA_SECRET_KEY  
-  #   value: 6Ld6bCkrAAAAAKCxAXgqHXnUyuE65LqNed7bmfg0
+  - variable: CAPTCHA_SECRET_KEY  
+    value: 6Ld6bCkrAAAAAKCxAXgqHXnUyuE65LqNed7bmfg0
 
   
