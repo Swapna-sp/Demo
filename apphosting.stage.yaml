@@ -55,3 +55,6 @@ env:
 
   - variable: NEXT_PUBLIC_LEAD_API_URL
     secret: PUBLIC_LEAD_API_URL
+
+  - variable: CAPTCHA_SECRET_KEY  
+    value: 6Ld6bCkrAAAAAKCxAXgqHXnUyuE65LqNed7bmfg0
