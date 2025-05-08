@@ -24,7 +24,8 @@ export default function PhoneNumberInput({ onOTPRequest }: PhoneNumberInputProps
     setIsLoading(true);
 
     try {
-       const token = await grecaptcha.execute('6LcmYTIrAAAAAET8yh2NvKcL8qpIrrJkVBOeJl82', { action: 'submit'});
+       const token = await grecaptcha.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, { action: 'submit'});
+
        const captchaResponse = await fetch('/api/verify-recaptcha', {
        method: 'POST',
        headers: {'Content-type': 'application/json'},
