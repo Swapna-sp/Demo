@@ -41,8 +41,8 @@ env:
   - variable: NEXT_PUBLIC_SITE_URL
     secret: PUBLIC_SITE_URL
 
-  - variable: NEXT_PUBLIC_PACKAGE_API_URL
-    value: "https://gettravelpackages-5oz2r3w4ya-uc.a.run.app"
+  # - variable: NEXT_PUBLIC_PACKAGE_API_URL
+  #   value: "https://gettravelpackages-5oz2r3w4ya-uc.a.run.app"
 
   - variable: NEXT_PUBLIC_PACKAGE_API_KEY
     value: "dmcwebsite2025farefirst"

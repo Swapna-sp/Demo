@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <main className="flex-grow">{children}
       <Domestic />
         <InternationalDestinations />
-        <Domestic />
+       <Domestic />
         <FeaturesSection />
         <FeaturesSection />
         </main>

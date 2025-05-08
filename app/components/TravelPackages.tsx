@@ -15,7 +15,7 @@ interface Package {
 }
 
 let hasFetchedGlobal = false;
-const TravelPackages = ({ apiUrl }: { apiUrl: string }) => {
+const TravelPackages = () => {
   const [packages, setPackages] = useState<Package[]>([]);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<User | null>(null);
@@ -36,7 +36,7 @@ const TravelPackages = ({ apiUrl }: { apiUrl: string }) => {
 
     const fetchPackages = async () => {
       try {
-        const response = await fetch(apiUrl, {
+        const response = await fetch('https://gettravelpackages-5oz2r3w4ya-uc.a.run.app', {
           headers: {
             "x-api-key": process.env.NEXT_PUBLIC_PACKAGE_API_KEY || "",
           },
@@ -57,7 +57,7 @@ const TravelPackages = ({ apiUrl }: { apiUrl: string }) => {
     };
 
     fetchPackages();
-  }, [apiUrl]);
+  }, );
 
   useEffect(() => {
     let interacted = false;
