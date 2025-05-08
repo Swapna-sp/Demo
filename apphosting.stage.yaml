@@ -47,8 +47,11 @@ env:
   - variable: NEXT_PUBLIC_PACKAGE_API_KEY
     secret: PUBLIC_PACKAGE_API_KEY
 
+  - variable: RECAPTCHA_SECRET_KEY
+    value: "6LcmYTIrAAAAAAJLi7fxpXcesvJEmtBjL0PKt6eB"  
+
   - variable: NEXT_PUBLIC_RECAPTCHA_SITE_KEY
-    secret: PUBLIC_RECAPTCHA_SITE_KEY
+    value: "6LcmYTIrAAAAAET8yh2NvKcL8qpIrrJkVBOeJl82"
    
   - variable: NEXT_PUBLIC_VALID_API_KEY
     secret: PUBLIC_VALID_API_KEY 

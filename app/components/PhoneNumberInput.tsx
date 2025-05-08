@@ -24,6 +24,23 @@ export default function PhoneNumberInput({ onOTPRequest }: PhoneNumberInputProps
     setIsLoading(true);
 
     try {
+       const token = await grecaptcha.execute('6LcmYTIrAAAAAET8yh2NvKcL8qpIrrJkVBOeJl82', { action: 'submit'});
+       const captchaResponse = await fetch('/api/verify-captcha', {
+       method: 'POST',
+       headers: {'Content-type': 'application/json'},
+       body: JSON.stringify({ token }),
+
+       });
+
+       const captchaResult = await captchaResponse.json();
+       if (!captchaResult.success) {
+         throw new Error('reCAPTCHA verification failed');
+       }
+   
+
+
+
+
       const verifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
         size: 'invisible',
       });
