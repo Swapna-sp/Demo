@@ -20,7 +20,7 @@ exports.submitLead = functions.https.onRequest((req, res) => {
     }
 
     try {
-      const { type, search, travelDate, pax, rooms, email, children, phoneNumber } = req.body;
+      const { type, search, travelDate, pax, rooms, email, children } = req.body;
 
 
       await db.collection("travelSearches").add({
@@ -31,7 +31,6 @@ exports.submitLead = functions.https.onRequest((req, res) => {
         children,
         rooms,
         email,
-        phoneNumber,
         timestamp: admin.firestore.FieldValue.serverTimestamp(),
       });
 
