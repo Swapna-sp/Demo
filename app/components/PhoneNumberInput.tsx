@@ -37,10 +37,6 @@ export default function PhoneNumberInput({ onOTPRequest }: PhoneNumberInputProps
          throw new Error('reCAPTCHA verification failed');
        }
    
-
-
-
-
       const verifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
         size: 'invisible',
       });

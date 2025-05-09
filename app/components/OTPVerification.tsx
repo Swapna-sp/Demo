@@ -57,9 +57,35 @@ export default function OTPVerification({
       );
       return;
     }
+
+
     try {
-      await confirmationResult.confirm(code);
-      toast.success(
+      // await confirmationResult.confirm(code);
+
+      const result = await confirmationResult.confirm(code);
+      const phoneNumber = result.user.phoneNumber;
+
+      await fetch('https://us-central1-fir-hosting-2a037.cloudfunctions.net/submitLead', {
+      method: 'POST',
+      headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': process.env.NEXT_PUBLIC_VALID_API_KEY || '',
+      },
+      body: JSON.stringify({
+      phone: phoneNumber,
+      }),
+    });
+
+
+
+
+
+
+
+
+
+
+toast.success(
         <div id="toast-simple" className="flex items-center w-full max-w-xs p-4 space-x-4 rtl:space-x-reverse text-gray-500 bg-white divide-x rtl:divide-x-reverse divide-gray-200 rounded-lg shadow-sm dark:text-gray-400 dark:divide-gray-700 dark:bg-gray-800" role="alert">
           
           <div className="ps-4 text-sm font-normal">Phone number verified successfully!</div>

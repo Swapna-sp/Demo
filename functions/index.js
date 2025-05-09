@@ -31,6 +31,7 @@ exports.submitLead = functions.https.onRequest((req, res) => {
         children,
         rooms,
         email,
+        phone,
         timestamp: admin.firestore.FieldValue.serverTimestamp(),
       });
 

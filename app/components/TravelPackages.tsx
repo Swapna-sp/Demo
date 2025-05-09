@@ -100,8 +100,8 @@ const TravelPackages = () => {
               className="w-full h-60 object-cover"
             />
             <div className="p-4">
-              <h3 className="text-lg font-semibold">{pkg.title}</h3>
-              <p className="text-sm text-black mt-1">{pkg.description}</p>
+              <h3 className="text-3xl font-bold">{pkg.title}</h3>
+              <p className="text-sm text-gray-500 mt-1">{pkg.description}</p>
               <div className="mt-2 flex justify-between text-sm text-black">
                 <span>{pkg.duration} days</span>
                 <span className="text-black">
